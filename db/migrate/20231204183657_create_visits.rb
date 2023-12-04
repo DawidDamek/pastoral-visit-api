@@ -14,8 +14,8 @@ class CreateVisits < ActiveRecord::Migration[7.1]
       t.string :phone_number
       t.string :status
 
-      t.references :visit, null: false, foreign_key: true
-      t.references :priest, null: true, foreign_key: { to_table: 'users' }
+      t.references :request, foreign_key: true
+      t.references :priest, foreign_key: { to_table: 'users' }
       t.timestamps
     end
   end

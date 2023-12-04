@@ -57,14 +57,14 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_04_183657) do
     t.string "email"
     t.string "phone_number"
     t.string "status"
-    t.bigint "visit_id", null: false
+    t.bigint "request_id"
     t.bigint "priest_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["priest_id"], name: "index_visits_on_priest_id"
-    t.index ["visit_id"], name: "index_visits_on_visit_id"
+    t.index ["request_id"], name: "index_visits_on_request_id"
   end
 
+  add_foreign_key "visits", "requests"
   add_foreign_key "visits", "users", column: "priest_id"
-  add_foreign_key "visits", "visits"
 end
