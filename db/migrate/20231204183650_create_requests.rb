@@ -5,6 +5,7 @@ class CreateRequests < ActiveRecord::Migration[7.1]
       t.string :surname
       t.integer :house_members_count
       t.datetime :schedule
+      t.string :city
       t.string :street
       t.string :number
       t.string :subnumber

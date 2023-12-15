@@ -46,11 +46,12 @@ User.create([
 
 Request.create([
                  {
-                   id: 1,
+                   id: 12039485,
                    name: 'Andrew',
                    surname: 'Kos',
                    house_members_count: 4,
                    schedule: DateTime.now + 1.week,
+                 city: 'Bielsko-Biała',
                    street: 'Długa',
                    number: '1A',
                    subnumber: '2B',
@@ -60,11 +61,12 @@ Request.create([
                    phone_number: '+987654321',
                    processed: false
                  },
-                 { id: 2,
+                 { id: 2928364,
                    name: 'Jane',
                    surname: 'Nowicka',
                    house_members_count: 3,
                    schedule: DateTime.now + 2.weeks,
+                 city: 'Bielsko-Biała',
                    street: 'Wrzosowa',
                    number: '3C',
                    subnumber: '4D',
@@ -73,11 +75,12 @@ Request.create([
                    email: 'jane.nowicka@example.com',
                    phone_number: '+123456789',
                    processed: true },
-                 { id: 3,
+                 { id: 38295473,
                    name: 'Łukasz',
                    surname: 'Wolski',
                    house_members_count: 2,
                    schedule: DateTime.now + 3.weeks,
+                 city: 'Bielsko-Biała',
                    street: 'Świerkowa',
                    number: '5E',
                    subnumber: '6F',
@@ -89,11 +92,12 @@ Request.create([
                ])
 Visit.create([
                {
-                 id: 1,
+                 id: 13123,
                  name: 'Andrew',
                  surname: 'Kos',
                  house_members_count: 4,
                  schedule: DateTime.now + 1.week,
+                 city: 'Bielsko-Biała',
                  street: 'Długa',
                  number: '1A',
                  subnumber: '2B',
@@ -102,13 +106,14 @@ Visit.create([
                  email: 'andrew.kos@example.com',
                  phone_number: '+987654321',
                  status: 'scheduled',
-                 request_id: 1
+                 request_id: 12039485
                },
-               { id: 2,
+               { id: 21241352,
                  name: 'Jane',
                  surname: 'Nowicka',
                  house_members_count: 3,
                  schedule: DateTime.now + 2.weeks,
+                 city: 'Czechowice',
                  street: 'Wrzosowa',
                  number: '3C',
                  subnumber: '4D',
@@ -118,7 +123,7 @@ Visit.create([
                  phone_number: '+123456789',
                  status: 'scheduled',
                  priest_id: 1,
-                 request_id: 2 }
+                 request_id: 2928364 }
              ])
 
 p "Created #{User.count} users"
