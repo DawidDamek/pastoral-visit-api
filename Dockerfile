@@ -28,7 +28,6 @@ RUN bundle install && \
     bundle exec bootsnap precompile --gemfile
 
 # Copy application code
-COPY . .
 
 # Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile app/ lib/
@@ -47,8 +46,8 @@ COPY --from=build /usr/local/bundle /usr/local/bundle
 COPY --from=build /rails /rails
 
 # Run and own only the runtime files as a non-root user for security
-RUN useradd rails --create-home --shell /bin/bash && \
-    chown -R rails:rails db log storage tmp
+RUN useradd rails --create-home --shell /bin/bash 
+    # chown -R rails:rails db log storage tmp
 USER rails:rails
 
 # Entrypoint prepares the database.
