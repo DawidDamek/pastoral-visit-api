@@ -306,15 +306,15 @@ Devise.setup do |config|
   config.responder.redirect_status = :see_other
 
   config.jwt do |jwt|
-  jwt.secret = Rails.application.credentials.fetch(:secret_key_base)
-  jwt.dispatch_requests = [
-    ['POST', %r{^/sign_in$}]
-  ]
-  jwt.revocation_requests = [
-    ['DELETE', %r{^/sign_out$}]
-  ]
-  jwt.expiration_time = 30.minutes.to_i
-end
+    jwt.secret = ENV['SECRET_KEY_BASE']
+    jwt.dispatch_requests = [
+      ['POST', %r{^/sign_in$}]
+    ]
+    jwt.revocation_requests = [
+      ['DELETE', %r{^/sign_out$}]
+    ]
+    jwt.expiration_time = 30.minutes.to_i
+  end
   # ==> Configuration for :registerable
 
   # When set to false, does not sign a user in automatically after their password is
