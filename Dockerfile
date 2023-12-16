@@ -56,7 +56,7 @@ ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 RUN echo "DUPA" \
   sudo chown -R $(whoami) ~/.asdf
 
-RUN sudo chmod -R 777 /rails/tmp/cache
+RUN sudo chown -R $(whoami) /rails/tmp/cache
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
