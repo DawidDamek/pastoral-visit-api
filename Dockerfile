@@ -56,7 +56,7 @@ ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 # RUN echo "DUPA" \
 #   sudo chown -R $(whoami) ~/.asdf
 
-RUN rm -rf /rails/tmp/cache
+RUN bundle exec puma -C config/puma.rb
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
