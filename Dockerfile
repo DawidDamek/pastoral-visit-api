@@ -32,6 +32,8 @@ RUN bundle install && \
 # Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile app/ lib/
 
+CMD mkdir -p /rails/tmp/cache && bundle exec rails server
+
 
 # Final stage for app image
 FROM base
@@ -52,9 +54,6 @@ USER rails:rails
 
 # Entrypoint prepares the database.
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
-
-# CMD zamiast ustawiania uprawnień
-CMD mkdir -p /rails/tmp/cache && bundle exec rails server
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
