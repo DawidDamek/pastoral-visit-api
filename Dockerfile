@@ -32,8 +32,6 @@ RUN bundle install && \
 # Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile app/ lib/
 
-RUN chown -R $(whoami) ~/projects/side/pastoral-visit-api
-
 # Final stage for app image
 FROM base
 
@@ -49,7 +47,11 @@ COPY --from=build /rails /rails
 # Run and own only the runtime files as a non-root user for security
 RUN useradd rails --create-home --shell /bin/bash 
     # chown -R rails:rails db log storage tmp
+RUN mkdir -p /rails/tmp/cache && \
+    chown -R rails:rails /rails/tmp/cache && \
+    chmod -R 755 /rails/tmp/cache
 USER rails:rails
+
 
 # Entrypoint prepares the database.
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
