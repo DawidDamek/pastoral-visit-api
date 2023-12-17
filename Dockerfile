@@ -50,6 +50,9 @@ RUN useradd rails --create-home --shell /bin/bash
     # chown -R rails:rails db log storage tmp
 USER rails:rails
 
+# Ustawienie uprawnień dla katalogu /rails/tmp/cache
+RUN mkdir -p /rails/tmp/cache && chmod -R 777 /rails/tmp/cache
+
 # Entrypoint prepares the database.
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
