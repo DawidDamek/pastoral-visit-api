@@ -26,7 +26,8 @@ COPY Gemfile Gemfile.lock ./
 RUN bundle install && \
     rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git && \
     bundle exec bootsnap precompile --gemfile
-
+    
+RUN mkdir -p tmp/cache && chown -R rails:rails tmp/cache && chmod -R 755 tmp/cache
 # Copy application code
 
 # Precompile bootsnap code for faster boot times
@@ -47,9 +48,7 @@ COPY --from=build /rails /rails
 # Run and own only the runtime files as a non-root user for security
 RUN useradd rails --create-home --shell /bin/bash 
     # chown -R rails:rails db log storage tmp
-RUN mkdir -p /rails/tmp/cache && \
-    chown -R rails:rails /rails/tmp/cache && \
-    chmod -R 755 /rails/tmp/cache
+
 USER rails:rails
 
 
