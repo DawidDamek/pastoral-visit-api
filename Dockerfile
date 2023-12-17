@@ -32,8 +32,7 @@ RUN bundle install && \
 # Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile app/ lib/
 
-CMD mkdir -p /rails/tmp/cache && bundle exec rails server
-
+RUN chown -R $(whoami) ~/.appname
 
 # Final stage for app image
 FROM base
