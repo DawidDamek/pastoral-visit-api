@@ -32,7 +32,7 @@ RUN bundle install && \
 # Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile app/ lib/
 
-RUN chown -R $(whoami) ~/.pastoral-visit-api
+RUN chown -R $(whoami) ~/projects/side/.pastoral-visit-api
 
 # Final stage for app image
 FROM base
