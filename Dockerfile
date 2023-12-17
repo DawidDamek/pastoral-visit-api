@@ -28,7 +28,7 @@ RUN bundle install && \
     bundle exec bootsnap precompile --gemfile
 
 # Copy application code
-
+COPY . .
 # Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile app/ lib/
 
@@ -49,7 +49,6 @@ RUN useradd rails --create-home --shell /bin/bash
     # chown -R rails:rails db log storage tmp
 
 USER rails:rails
-RUN chown -R $(whoami) /rails/tmp
 
 # Entrypoint prepares the database.
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
