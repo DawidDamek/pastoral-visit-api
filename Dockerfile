@@ -27,6 +27,10 @@ RUN bundle install && \
     rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git && \
     bundle exec bootsnap precompile --gemfile
 
+RUN mkdir -p ./tmp/cache
+RUN chown -R $(whoami) ./tmp
+RUN chmod -R 755 ./tmp
+
 # Copy application code
 COPY . .
 # Precompile bootsnap code for faster boot times
