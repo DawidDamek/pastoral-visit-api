@@ -27,10 +27,6 @@ RUN bundle install && \
     rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git && \
     bundle exec bootsnap precompile --gemfile
 
-RUN mkdir -p /rails/tmp/cache
-RUN chown -R $(whoami) ./tmp
-RUN chmod -R 755 ./tmp
-
 # Copy application code
 COPY . .
 # Precompile bootsnap code for faster boot times
@@ -47,12 +43,6 @@ RUN apt-get update -qq && \
 # Copy built artifacts: gems, application
 COPY --from=build /usr/local/bundle /usr/local/bundle
 COPY --from=build /rails /rails
-
-# Run and own only the runtime files as a non-root user for security
-RUN useradd rails --create-home --shell /bin/bash 
-    # chown -R rails:rails db log storage tmp
-
-USER rails:rails
 
 # Entrypoint prepares the database.
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
